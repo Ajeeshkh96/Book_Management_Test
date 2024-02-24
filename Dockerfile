@@ -17,8 +17,5 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 # Copy the rest of the application code to the working directory
 COPY . /app/
 
-# Collect static files
-RUN python manage.py collectstatic --noinput
-
 # Run the application
 CMD ["gunicorn", "Book_Management.wsgi:application", "--bind", "0.0.0.0:8000"]
