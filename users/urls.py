@@ -9,7 +9,7 @@ from .views import create_user
 router = DefaultRouter()
 router.register(r'authors', AuthorViewSet, basename='author')
 router.register(r'books', BookViewSet, basename='book')
-router.register(r'reviews', ReviewViewSet)
+router.register(r'reviews', ReviewViewSet, basename='review')
 
 urlpatterns = [
     path('api/token/', obtain_auth_token, name='token_obtain_pair'),

@@ -1,6 +1,7 @@
 # models.py
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import Avg
 
 
 class Author(models.Model):
@@ -14,8 +15,8 @@ class Book(models.Model):
     total_rating = models.FloatField(default=0.0)
 
 class Review(models.Model):
-    author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True, blank=True)
-    book = models.ForeignKey(Book, on_delete=models.CASCADE, null=True, blank=True)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True, blank=True, related_name='reviews')
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, null=True, blank=True, related_name='reviews')
     rating = models.FloatField()
     comment = models.TextField()
     total_rating = models.FloatField(default=0.0)
