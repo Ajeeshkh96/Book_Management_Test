@@ -1,0 +1,128 @@
+{% extends 'registration/base.html' %}
+
+{% block content %}
+<div class="container mx-auto bg-cover bg-center" style="background-image: url('path/to/your/image.jpg'); border: 2px solid white; border-radius: 2%;">
+  <div class="container mx-auto">
+      <!-- Error message -->
+      {% if errors.general %}
+          <div class="text-red-600 text-center mt-4 text-sm">
+              {{ errors.general }}
+          </div>
+      {% endif %}
+
+      <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8" style="border: 2px solid black; border-radius: 2%;">
+          <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+              <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-[#000000]">
+                  Register
+              </h2>
+          </div>
+
+          <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+              <form class="space-y-6 public" method="POST" action="{% your_form_action %}">
+                  <!-- Email input -->
+                  <div>
+                      <div>
+                          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">
+                              Email address
+                          </label>
+                          <div class="mt-2">
+                              <input id="email" name="email" type="email" required class="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#92638f] sm:text-sm sm:leading-6">
+                          </div>
+                          {% if errors.email %}
+                              <div class="text-red-600 text-sm">{{ errors.email }}</div>
+                          {% endif %}
+                      </div>
+                      <!-- First name and Last name inputs -->
+                      <div class="mt-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                          <div class="sm:col-span-3">
+                              <label for="first_name" class="block text-sm font-medium leading-6 text-gray-900">
+                                  First name
+                              </label>
+                              <div class="mt-2">
+                                  <input type="text" name="first_name" id="first-name" class="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#92638f] sm:text-sm sm:leading-6">
+                              </div>
+                              {% if errors.first_name %}
+                                  <div class="text-red-600 text-sm">{{ errors.first_name }}</div>
+                              {% endif %}
+                          </div>
+
+                          <div class="sm:col-span-3">
+                              <label for="last_name" class="block text-sm font-medium leading-6 text-gray-900">
+                                  Last name
+                              </label>
+                              <div class="mt-2">
+                                  <input type="text" name="last_name" id="last-name" class="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#92638f] sm:text-sm sm:leading-6">
+                              </div>
+                              {% if errors.last_name %}
+                                  <div class="text-red-600 text-sm">{{ errors.last_name }}</div>
+                              {% endif %}
+                          </div>
+                      </div>
+                      <!-- Age input -->
+                      <div class="col-span-full">
+                          <div class="sm:col-span-2 sm:col-start-1 w-12">
+                              <label for="age" class="block text-sm font-medium leading-6 text-gray-900">
+                                  Age
+                              </label>
+                              <div class="mt-2">
+                                  <input type="text" name="age" id="age" class="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#92638f] sm:text-sm sm:leading-6">
+                              </div>
+                              {% if errors.age %}
+                                  <div class="text-red-600 text-sm">{{ errors.age }}</div>
+                              {% endif %}
+                          </div>
+                      </div>
+                      <!-- Password input -->
+                      <div class="flex items-center justify-between">
+                          <label for="password" class="block text-sm font-medium leading-6 text-gray-900">
+                              Password
+                          </label>
+                          <div class="text-sm"></div>
+                      </div>
+                      <div class="mt-2">
+                          <input id="password" name="password" type="password" required class="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#92638f] sm:text-sm sm:leading-6">
+                      </div>
+                      {% if errors.password %}
+                          <div class="text-red-600 text-sm">{{ errors.password }}</div>
+                      {% endif %}
+                  </div>
+                  <!-- Confirm Password input -->
+                  <div>
+                      <label for="confirm_password" class="block text-sm font-medium leading-6 text-gray-900">
+                          Confirm Password
+                      </label>
+                      <div class="mt-2">
+                          <input id="confirm_password" name="confirm_password" type="password" required class="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#000000] sm:text-sm sm:leading-6">
+                      </div>
+                      {% if errors.confirm_password %}
+                          <div class="text-red-600 text-sm">{{ errors.confirm_password }}</div>
+                      {% endif %}
+                  </div>
+                  <!-- Loading Spinner or Register Button -->
+                  {% if loading %}
+                      <div class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-primary motion-reduce:animate-[spin_1.5s_linear_infinite]" role="status">
+                          <span class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+                              Loading...
+                          </span>
+                      </div>
+                  {% else %}
+                      <div>
+                          <button type="submit" class="flex w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm bg-[#000000] hover:bg-[#000000] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#000000]">
+                              Register
+                          </button>
+                      </div>
+                  {% endif %}
+              </form>
+
+              <p class="mt-10 text-center text-sm text-dark-500">
+                  Already a member?
+                  <a href="/" class="font-semibold leading-6 text-[#000000] hover:text-[#000000]">
+                      &nbsp; Login
+                  </a>
+              </p>
+          </div>
+      </div>
+  </div>
+</div>
+
+{% endblock %}
